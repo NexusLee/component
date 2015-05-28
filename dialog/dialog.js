@@ -1,8 +1,16 @@
-define(function(){
+define(['jquery'],function($){
+    function Dialog(){};
+
+    Dialog.prototype = {
+        alert: function(){
+            console.log("123");
+        },
+        confirm: function(){},
+        prompt: function(){}
+    }
+
     return {
-           formatNum: function (n) {
-               if (n < 10) return '0' + n;
-               return n;
-             }
-       };
+        Dialog : Dialog
+    }
+
 });
