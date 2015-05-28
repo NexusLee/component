@@ -5,6 +5,12 @@ require.config({
 })
 require(['jquery','dialog/dialog'], function ($, dialog) {
     $("#a").click(function(){
-        new dialog.Dialog().alert();
+        new dialog.Dialog().alert('welcome', function(){
+            alert("you click the button");
+        },{
+            width: 300,
+            height: 150,
+            y: 50
+        });
     })
 });

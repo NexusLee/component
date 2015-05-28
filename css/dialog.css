@@ -1,0 +1,11 @@
+.dialog_box{
+    position: fixed;
+    border: 1px solid #000;
+    margin-left: -250px;
+    box-shadow: 0 0 12px rgba(0,0,0,.5);
+    z-index: 1000;
+}
+.dialog_box input{
+    width: 100px;
+    margin-left: -50px;
+}
