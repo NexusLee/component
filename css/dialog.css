@@ -1,11 +1,47 @@
-.dialog_box{
+.dialog-box {
+    height:auto;
     position: fixed;
-    border: 1px solid #000;
-    margin-left: -250px;
-    box-shadow: 0 0 12px rgba(0,0,0,.5);
+    box-shadow: 0 0 12px rgba(0, 0, 0, .5);
     z-index: 1000;
 }
-.dialog_box input{
-    width: 100px;
-    margin-left: -50px;
+/*
+.dialog-head input {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.dialog-body input {
+    padding: 10px;
+}
+*/
+.dialog-head {
+    border-bottom: #eee solid 1px;
+    padding: 20px;
+    font-size: 20px;
+    position: relative;
+}
+
+.dialog-body {
+    padding: 20px;
+}
+
+.dialog-foot {
+    background: #f5f5f5;
+    padding: 10px;
+    border-top: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+    text-align: right;
+}
+.dialog-closeBtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 10px;
+    font-size: 20px;
+    background-color: blue;
+    color: #fff;
+    cursor: pointer;
 }

@@ -5,12 +5,18 @@ require.config({
 })
 require(['jquery','dialog/dialog'], function ($, dialog) {
     $("#a").click(function(){
-        new dialog.Dialog().alert('welcome', function(){
-            alert("you click the button");
-        },{
+        new dialog.Dialog().alert({
             width: 300,
-            height: 150,
-            y: 50
+            y: 50,
+            hasCloseBtn: true,
+            content: 'welcome',
+            title: '提示',
+            close_handler: function () {
+                alert("you click the close button");
+            },
+            callback: function () {
+                alert("you click the alert button");
+            }
         });
     })
 });
