@@ -9,8 +9,10 @@ require(['jquery','dialog/dialog'], function ($, dialog) {
             width: 300,
             y: 50,
             hasCloseBtn: true,
+            skinClassName: 'customClass',
             content: 'welcome',
             title: '提示',
+            alertBtn: 'OK',
             close_handler: function () {
                 alert("you click the close button");
             },
