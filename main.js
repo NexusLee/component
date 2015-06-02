@@ -1,6 +1,7 @@
 require.config({
     paths:{
-        jquery: 'jquery-1.11.3.min'
+        jquery: 'jquery-1.11.3.min',
+        jqueryUI: 'http://code.jquery.com/ui/1.10.4/jquery-ui'
     }
 })
 require(['jquery','dialog/dialog'], function ($, dialog) {
@@ -13,6 +14,7 @@ require(['jquery','dialog/dialog'], function ($, dialog) {
             content: 'welcome',
             title: '提示',
             alertBtn: 'OK',
+            dragHandle: ".dialog-head",
             close_handler: function () {
                 alert("you click the close button");
             },

@@ -1,4 +1,4 @@
-define(['jquery'],function($){
+define(['jquery','jqueryUI'],function($, $UI){
     'use strict';
     function Dialog(){
         this.config = {
@@ -8,6 +8,8 @@ define(['jquery'],function($){
             content: "",
             mask: true,
             hasCloseBtn: false,
+            isDraggable: true,
+            dragHandle: null,
             skinClassName: null,
             close_handler: null,
             callback: null
@@ -41,6 +43,13 @@ define(['jquery'],function($){
             }
             if(config.skinClassName){
                 box.addClass(config.skinClassName);
+            }
+            if(config.isDraggable){
+                if(config.dragHandle){
+                    box.draggable({handle:config.dragHandle});
+                }else{
+                    box.draggable();
+                }
             }
             box.appendTo("body");//.fadeIn().animate({'top':'60%'});
             var btn = box.find(".dialog-foot input");
