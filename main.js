@@ -6,7 +6,8 @@ require.config({
 })
 require(['jquery','dialog/dialog'], function ($, dialog) {
     $("#a").click(function(){
-        new dialog.Dialog().alert({
+        var d = new dialog.Dialog();
+        d.alert({
             width: 300,
             y: 50,
             hasCloseBtn: true,
@@ -22,5 +23,15 @@ require(['jquery','dialog/dialog'], function ($, dialog) {
                 alert("you click the alert button");
             }
         });
+        d.on("alert", function(){
+            alert("the second alert handler");
+        });
+        d.on("alert", function(){
+            alert("the third alert handler");
+        });
+        d.on("close", function(){
+            alert("the second close handler");
+        });
+
     })
 });

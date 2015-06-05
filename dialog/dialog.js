@@ -13,13 +13,28 @@ define(['jquery','jqueryUI'],function($, $UI){
             skinClassName: null,
             close_handler: null,
             callback: null
-        }
+        },
+        this.handlers = {}
     };
 
     Dialog.prototype = {
+        on: function(type, handler){
+            if(typeof this.handlers[type] == "undefined"){
+                this.handlers[type] = [];
+            }
+            this.handlers[type].push(handler);
+        },
+        fire: function(type, data){
+            if(this.handlers[type] instanceof Array){
+                var handlers = this.handlers[type];
+                for(var i= 0,len = handlers.length; i < len; i++){
+                    handlers[i](data);
+                }
+            }
+        },
         alert: function(config){
             //$('body').prepend('<div id="mask"></div>').find('#mask').css({opacity:0.5,  cursor:'pointer', background:'black', position:'absolute', zIndex:999, width:'100%',  height:$(document).height()});
-            var mask = null,
+            var mask = null,that = this,
                 config = $.extend(this.config, config),
                 box = $('<div class="dialog-box">'+
                             '<div class="dialog-head">' + config.title + '</div>'+
@@ -36,9 +51,9 @@ define(['jquery','jqueryUI'],function($, $UI){
                 var closeBtn = $('<span class="dialog-closeBtn">X</span>');
                 closeBtn.appendTo(box);
                 closeBtn.click(function (){
-                    config.close_handler && config.close_handler();
                     box.remove();
                     mask && mask.remove();
+                    that.fire("close");
                 });
             }
             if(config.skinClassName){
@@ -54,9 +69,9 @@ define(['jquery','jqueryUI'],function($, $UI){
             box.appendTo("body");//.fadeIn().animate({'top':'60%'});
             var btn = box.find(".dialog-foot input");
             btn.click(function(){
-                config.callback && config.callback();
                 box.remove();
                 mask && mask.remove();
+                that.fire("alert");
             });
             box.css({
                 width: config.width + "px",
@@ -64,7 +79,12 @@ define(['jquery','jqueryUI'],function($, $UI){
                 left: (config.x || (window.innerWidth - config.width)/2 ) + "px",
                 top: (config.y || (window.innerHeight - config.height)/2 ) + "px"
             })
-
+            if(config.callback){
+                this.on("alert", config.callback);
+            }
+            if(config.close_handler){
+                this.on("close", config.close_handler);
+            }
         },
         confirm: function(){},
         prompt: function(){}
