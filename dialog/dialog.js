@@ -23,6 +23,7 @@ define(['jquery','jqueryUI'],function($, $UI){
                 this.handlers[type] = [];
             }
             this.handlers[type].push(handler);
+            return this;
         },
         fire: function(type, data){
             if(this.handlers[type] instanceof Array){
@@ -85,6 +86,7 @@ define(['jquery','jqueryUI'],function($, $UI){
             if(config.close_handler){
                 this.on("close", config.close_handler);
             }
+            return this;
         },
         confirm: function(){},
         prompt: function(){}

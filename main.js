@@ -22,11 +22,9 @@ require(['jquery','dialog/dialog'], function ($, dialog) {
             callback: function () {
                 alert("you click the alert button");
             }
-        });
-        d.on("alert", function(){
+        }).on("alert", function(){
             alert("the second alert handler");
-        });
-        d.on("alert", function(){
+        }).on("alert", function(){
             alert("the third alert handler");
         });
         d.on("close", function(){
